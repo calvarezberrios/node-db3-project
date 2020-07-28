@@ -69,12 +69,13 @@ router.post('/:id/steps', (req, res) => {
       .then(step => {
         res.status(201).json(step);
       })
+      .catch(err => res.status(500).json({ message: "Failed to create new Step"}))
     } else {
       res.status(404).json({ message: 'Could not find scheme with given id.' })
     }
   })
   .catch (err => {
-    res.status(500).json({ message: 'Failed to create new step' });
+    res.status(500).json({ message: 'Failed to retrieve scheme data' });
   });
 });
 
@@ -88,13 +89,14 @@ router.put('/:id', (req, res) => {
       Schemes.update(changes, id)
       .then(updatedScheme => {
         res.json(updatedScheme);
-      });
+      })
+      .catch(err => res.status(500).json({ message: "Failed to update scheme" }));
     } else {
       res.status(404).json({ message: 'Could not find scheme with given id' });
     }
   })
   .catch (err => {
-    res.status(500).json({ message: 'Failed to update scheme' });
+    res.status(500).json({ message: 'Failed to retrieve scheme' });
   });
 });
 
