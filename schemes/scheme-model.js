@@ -40,8 +40,7 @@ function addStep(step, scheme_id) {
         .then(ids => {
             return findSteps(scheme_id)
                 .then(steps => {
-                    const newStep = steps.filter(step => step.id === ids[0])[0];
-                    return newStep;
+                    return steps.filter(step => step.id === ids[0])[0];
                 });
         });
 }
